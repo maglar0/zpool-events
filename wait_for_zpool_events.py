@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import logging
+import os
 import queue
 import re
 import subprocess
@@ -53,7 +54,9 @@ MAX_SECONDS_BETWEEN_NOTIFICATIONS = 86400*60
 
 
 def send_zpool_status(text_to_add_to_notification):
-    subprocess.run(['/root/ntfy/send_zpool_status.sh', text_to_add_to_notification], check=True)
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    script_path = os.path.join(current_directory, 'send_zpool_status.sh')
+    subprocess.run([script_path, text_to_add_to_notification], check=True)
 
 
 event_queue = queue.Queue()
