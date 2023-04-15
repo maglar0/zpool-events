@@ -1,0 +1,14 @@
+[Unit]
+Description=Monitor ZFS pool events
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/root/zpool-events/wait_for_zpool_events.py
+ExecStopPost=/root/zpool-events/send_zpool_status.sh wait_for_zpool_events.py stopped
+Restart=always
+RestartSec=60s
+StartLimitBurst=2
+
+[Install]
+WantedBy=multi-user.target

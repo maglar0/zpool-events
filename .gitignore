@@ -127,3 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+send_zpool_status.sh
